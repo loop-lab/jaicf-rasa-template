@@ -1,0 +1,13 @@
+version: "3.0"
+
+intents:
+  - hello
+  - goodbye
+  - my_name
+
+entities:
+  - PERSON
+
+session_config:
+  session_expiration_time: 60
+  carry_over_slots_to_new_session: true

@@ -1,0 +1,5 @@
+/bot/.gradle/
+/bot/.idea/
+/bot/build/
+/rasa/venv/
+/rasa/.rasa/

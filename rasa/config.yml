@@ -1,0 +1,30 @@
+# Configuration for Rasa NLU.
+# https://rasa.com/docs/rasa/nlu/components/
+language: ru
+
+pipeline:
+  - name: "SpacyNLP"
+    model: "ru_core_news_md"
+    case_sensitive: False
+  - name: "SpacyTokenizer"
+    "intent_tokenization_flag": False
+    "intent_split_symbol": "_"
+    "token_pattern": None
+  - name: "SpacyFeaturizer"
+    "pooling": "mean"
+  - name: "RegexFeaturizer"
+  - name: DIETClassifier
+    epochs: 300
+    batch_strategy: "sequence"
+    similarity_type: "inner"
+    maximum_positive_similarity: 0.9
+    maximum_negative_similarity: 0
+    constrain_similarities: true
+    model_confidence: "softmax"
+    ranking_length: 3
+    evaluate_every_number_of_epochs: -1
+    use_masked_language_model: True
+  - name: FallbackClassifier
+    threshold: 0.05
+
+policies:
