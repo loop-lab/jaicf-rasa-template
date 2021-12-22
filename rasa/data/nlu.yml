@@ -1,25 +1,25 @@
 version: "3.0"
 
-nlu:                                        # data/nlu.yml
-- intent: hello                             # намерение называется hello
-  examples: |                               # человек здоровается с ботом
+nlu:                                        
+- intent: hello                             
+  examples: |                              
     - привет 
     - здравствуй
     - добрый день
 
-- intent: goodbye                           # намерение называется goodbye
-  examples: |                               # человек прощается с ботом
+- intent: goodbye                           
+  examples: |                               
     - пока
     - до завтра
     - до свидания
 
-- intent: my_name                           # data/nlu.yml
+- intent: myName
   examples: |
-    - меня зовут [Настя](PERSON)
-    - меня зовут [Анастасия](PERSON)
-    - зовите меня [Бонд](PERSON)
-    - зовите меня [Изя](PERSON)
-    - друзья зовут меня [Нюша](PERSON)
-    - друзья зовут меня [Пандочка](PERSON)
-    - [Маша](PERSON)
-    - [Саша](PERSON)
+    - Я - [Влад](name)
+    - Я - [Крис](name)
+    - меня зовут [Настя](name)
+    - меня зовут [Анастасия](name)
+    - зовите меня [Бонд](name)
+    - зовите меня [Изя](name)
+    - друзья зовут меня [Нюша](name)
+    - друзья зовут меня [Пандочка](name)

@@ -1,15 +1,16 @@
 plugins {
     application
     kotlin("jvm") version "1.4.21"
+    kotlin("plugin.serialization") version "1.5.21"
     id("com.github.johnrengelman.shadow") version "5.0.0"
 }
 
 group = "com.justai.jaicf"
 version = "1.0.0"
 
+val ktor = "1.5.1"
 val jaicf = "1.2.2"
 val slf4j = "1.7.30"
-val ktor = "1.5.1"
 
 application {
     mainClassName = "com.justai.jaicf.template.channel.TelegramKt"
@@ -29,11 +30,11 @@ dependencies {
     implementation("org.slf4j:slf4j-log4j12:$slf4j")
 
     implementation("com.just-ai.jaicf:core:$jaicf")
-    implementation("com.just-ai.jaicf:rasa:$jaicf")
-    implementation("com.just-ai.jaicf:mongo:$jaicf")
     implementation("com.just-ai.jaicf:telegram:$jaicf")
 
+    implementation("io.ktor:ktor-client-cio:$ktor")
     implementation("io.ktor:ktor-client-jackson:$ktor")
+    implementation("io.ktor:ktor-client-serialization-jvm:$ktor")
 }
 
 tasks {

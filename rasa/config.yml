@@ -13,6 +13,9 @@ pipeline:
   - name: "SpacyFeaturizer"
     "pooling": "mean"
   - name: "RegexFeaturizer"
+    "case_sensitive": False
+    "use_word_boundaries": True
+  - name: "CountVectorsFeaturizer"
   - name: DIETClassifier
     epochs: 300
     batch_strategy: "sequence"
@@ -22,8 +25,35 @@ pipeline:
     constrain_similarities: true
     model_confidence: "softmax"
     ranking_length: 3
+    entity_recognition: False
     evaluate_every_number_of_epochs: -1
     use_masked_language_model: True
+  - name: "CRFEntityExtractor"
+    "BILOU_flag": True
+    "features": [
+      ["low", "title", "upper"],
+      [
+          "bias",
+          "low",
+          "prefix5",
+          "prefix2",
+          "suffix5",
+          "suffix3",
+          "suffix2",
+          "upper",
+          "title",
+          "digit",
+          "pattern",
+      ],
+      ["low", "title", "upper"],
+    ]
+    "max_iterations": 50
+    "L1_c": 0.1
+    "L2_c": 0.1
+    "featurizers": []
+    "split_entities_by_comma":
+      address: False
+      email: True
   - name: FallbackClassifier
     threshold: 0.05
 

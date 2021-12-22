@@ -1,35 +1,49 @@
 package com.justai.jaicf.template.scenario
 
 import com.justai.jaicf.builder.Scenario
+import com.justai.jaicf.template.activator.rasa.rasa
 
 val MainScenario = Scenario {
-    state("main") {
+    state("hello") {
         activators {
             intent("hello")
             regex("/start")
         }
 
         action {
-            reactions.run {
-                sayRandom("Hi there!", "Hello!", "Good day!")
-            }
+            reactions.sayRandom("Привет!", "Дороу!", "Поехали!")
         }
     }
 
-    state("bye") {
+    state("myName") {
+        activators {
+            intent("myName")
+        }
+
+        action {
+            val name = activator.rasa?.slots?.get("name")
+            println(name.toString())
+            if (name !== null)
+                reactions.say("Тебя зовут ${name.value}")
+            else
+                reactions.say("Повтори, пожалуйста, как тебя зовут?")
+        }
+    }
+
+    state("goodbye") {
         activators {
             intent("goodbye")
         }
 
         action {
-            reactions.sayRandom("Bye bye!", "See you latter!")
+            reactions.sayRandom("Пока!", "Покеда!")
         }
     }
 
     fallback {
         reactions.run {
-            sayRandom("Sorry, I didn't get that...", "Looks like it's something new for me...")
-            say("Could you repeat please?")
+            sayRandom("Я тебя не понимаю =(", "Че? =/")
+            say("Повтори, что ты сказал?")
         }
     }
 }

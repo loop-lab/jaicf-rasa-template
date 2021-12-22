@@ -2,11 +2,11 @@ version: "3.0"
 
 intents:
   - hello
+  - myName
   - goodbye
-  - my_name
 
 entities:
-  - PERSON
+  - name
 
 session_config:
   session_expiration_time: 60
