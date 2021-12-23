@@ -11,7 +11,7 @@ val MainScenario = Scenario {
         }
 
         action {
-            reactions.sayRandom("Привет!", "Дороу!", "Поехали!")
+            reactions.sayRandom("Привет!", "Дороу!", "Погнали!")
         }
     }
 
@@ -30,6 +30,16 @@ val MainScenario = Scenario {
         }
     }
 
+    state("jock") {
+        activators {
+            intent("jock")
+        }
+
+        action {
+            reactions.say("Я на сам деле программист в рабстве")
+        }
+    }
+
     state("goodbye") {
         activators {
             intent("goodbye")
@@ -42,6 +52,7 @@ val MainScenario = Scenario {
 
     fallback {
         reactions.run {
+
             sayRandom("Я тебя не понимаю =(", "Че? =/")
             say("Повтори, что ты сказал?")
         }
